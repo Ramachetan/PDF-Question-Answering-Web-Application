@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Question Answering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        #loading-spinner {
+            display: none;
+        }
+
+        /* Chat container */
+        .chat-container {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* User message */
+        .user-message {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            align-self: flex-end;
+        }
+
+        /* Bot message */
+        .bot-message {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 10px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="center-align">PDF Question Answering</h1>
+        <form id="upload-form" enctype="multipart/form-data" class="col s12">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>Upload PDFs</span>
+                    <input type="file" id="pdf_files" name="pdf_files[]" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload one or more PDFs">
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">Upload</button>
+        </form>
+        <br>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="question" type="text" class="validate">
+                <label for="question">Ask a question</label>
+            </div>
+            <button id="ask-btn" class="btn waves-effect waves-light">Ask</button>
+        </div>
+        <br>
+        <div id="chat-container"></div>
+        <img id="loading-spinner" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/ajax-loader.gif" alt="Loading...">
+    </div>
+</body>
+</html>
